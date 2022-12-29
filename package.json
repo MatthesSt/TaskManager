@@ -6,11 +6,18 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "updateMBD": "npm i git+https://github.com/MBD-Team/CustomMBDComponents.git"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.5",
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "bootstrap": "^5.1.3",
+    "custom-mbd-components": "git+https://github.com/MBD-Team/CustomMBDComponents.git",
     "firebase": "^9.15.0",
-    "vue": "^3.2.45"
+    "sass": "^1.53.0",
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

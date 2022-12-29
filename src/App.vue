@@ -1,6 +1,8 @@
 <template>
-  <div></div>
+  <div class="bg-dark d-flex flex-1 w-100" style="min-height: 100vh">
+    <router-view />
+  </div>
 </template>
 
 <script setup lang="ts"></script>
-<style scoped lang="scss"></style>
+<style lang="scss"></style>
