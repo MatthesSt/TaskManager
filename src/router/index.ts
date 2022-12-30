@@ -4,6 +4,10 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import Login from '../views/Login.vue';
 import Home from '../views/Home.vue';
 import Lists from '../views/Lists.vue';
+import List from '../views/List.vue';
+import ListSettings from '../views/ListSettings.vue';
+import friends from '../views/Friends.vue';
+import settings from '../views/Settings.vue';
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -21,9 +25,41 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: '/settings',
+    name: 'Settings',
+    component: settings,
+    meta: {
+      guard: 'auth',
+    },
+  },
+  {
     path: '/lists',
     name: 'Lists',
     component: Lists,
+    meta: {
+      guard: 'auth',
+    },
+  },
+  {
+    path: '/list/:id',
+    name: 'List',
+    component: List,
+    meta: {
+      guard: 'auth',
+    },
+  },
+  {
+    path: '/friends',
+    name: 'friends',
+    component: friends,
+    meta: {
+      guard: 'auth',
+    },
+  },
+  {
+    path: '/settings/:id',
+    name: 'listSettings',
+    component: ListSettings,
     meta: {
       guard: 'auth',
     },

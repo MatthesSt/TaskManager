@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column justify-content-around align-items-center py-5" style="height: 100vh">
+  <div class="d-flex flex-column justify-content-around align-items-center w-100 py-5" style="height: 100vh">
     <control @click.stop="router.push('/friends')"><i class="far fa-user"></i></control>
     <control @click.stop="router.push('/lists')"><i class="far fa-list-alt"></i></control>
     <control @click.stop="router.push('/settings')"><i class="fas fa-cogs"></i></control>

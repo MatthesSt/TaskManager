@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-content-center align-items-center flex-column" style="height: 100vh">
+  <div class="d-flex justify-content-center align-items-center flex-column w-100" style="height: 100vh">
     <div>
       <h1>{{ doRegister ? 'Registrieren' : 'Login' }}</h1>
       <form @submit.prevent="submit()" style="min-width: 300px">
