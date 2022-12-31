@@ -1,7 +1,7 @@
 <template>
-  <button class="controlButton" type="button">
+  <div class="controlButton">
     <slot></slot>
-  </button>
+  </div>
 </template>
 <script lang="ts" setup>
 import { toRefs } from 'vue';
@@ -25,5 +25,8 @@ const { size } = toRefs(props);
   border: none;
   color: white;
   font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
