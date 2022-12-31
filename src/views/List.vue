@@ -2,7 +2,7 @@
   <div v-if="list" class="text-light d-flex flex-column align-items-center justify-content-between w-100 py-5">
     <div class="row w-100 px-4 g-0">
       <h1 class="text-center col-4 offset-4">{{ list?.name }}</h1>
-      <div class="col-4 d-flex justify-content-end">
+      <div v-if="list.authorId == currentUser?.uid" class="col-4 d-flex justify-content-end">
         <control size="40px" style="font-size: 20px; background-color: grey" @click.stop="router.push(`/settings/${listId}`)">
           <i class="fas fa-cog"></i>
         </control>
@@ -43,6 +43,7 @@ import * as API from '../API';
 import { Message, TextInput, Button } from 'custom-mbd-components';
 import control from '../components/controlButton.vue';
 import router from '../router';
+import { currentUser } from '../router';
 
 const list = ref<List | null>(null);
 const error = ref('');
