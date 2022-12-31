@@ -3,7 +3,7 @@
     <div>
       <h1>{{ doRegister ? 'Registrieren' : 'Login' }}</h1>
       <form @submit.prevent="submit()" style="min-width: 300px">
-        <Message v-model:success="success" v-model:error="error" />
+        <Message v-model:error="error" />
         <div>
           <EmailInput placeholder="Email" v-model="email" required></EmailInput>
         </div>
@@ -30,7 +30,6 @@ const password = ref('');
 const username = ref('');
 
 const doRegister = ref(false);
-const success = ref('');
 const error = ref('');
 
 async function submit() {

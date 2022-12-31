@@ -1,8 +1,9 @@
 <template>
   <div class="d-flex flex-column align-items-center w-100 overflow-auto py-5">
-    <h3 class="text-light me-2 mb-0 d-flex align-items-center">{{ list?.name }}</h3>
-    <div class="w-100 mt-5">
-      <div v-for="friend in friends" class="grid mb-2 w-100 px-4 text-light">
+    <h2 class="text-light me-2 mb-0 d-flex align-items-center">{{ list?.name }}</h2>
+    <Message v-model:error="error" />
+    <div v-if="friends.length > 0" class="w-100 mt-5">
+      <div v-for="friend in friends" class="settingsgrid mb-2 w-100 px-4 text-light">
         <h3 class="mb-0">{{ friend.name }}</h3>
         <control v-if="list?.authorized.find(id => id == friend.id)" size="40px" style="font-size: 20px" @click.stop="changeAuthState(friend.id)">
           <i class="fas fa-check"></i>
@@ -12,10 +13,13 @@
         </control>
       </div>
     </div>
+    <div v-else>
+      <h5 class="text-light mt-5 text-center px-5">Du hast keine Freunde die du hinzufügen kannst</h5>
+    </div>
   </div>
 </template>
 <style lang="scss">
-.grid {
+.settingsgrid {
   display: grid;
   grid-template-columns: auto 40px;
   gap: 10px;
@@ -37,7 +41,6 @@ import control from '../components/controlButton.vue';
 const list = ref<List | null>(null);
 const listId = window.location.href.split('/').at(-1)!;
 const error = ref('');
-const success = ref('');
 const friends = ref<User[]>([]);
 
 async function getList() {

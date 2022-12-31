@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="d-flex flex-column align-items-center w-100 overflow-auto">
-      <div v-for="todo in list?.todos" class="grid mb-2 w-100 px-4">
+      <div v-for="todo in list?.todos" class="listgrid mb-2 w-100 px-4">
         <h3 class="text-light me-2 mb-0 d-flex align-items-center">{{ todo.name }}</h3>
         <control size="40px" style="font-size: 20px" @click.stop="deleteTodo(todo)"><i class="fas fa-trash"></i></control>
         <control v-if="todo.completed" size="40px" style="font-size: 20px" @click.stop="checkTodo(todo)"><i class="fas fa-check"></i></control>
@@ -30,7 +30,7 @@
   </div>
 </template>
 <style lang="scss">
-.grid {
+.listgrid {
   display: grid;
   grid-template-columns: auto 40px 40px;
   gap: 10px;
@@ -74,9 +74,10 @@ async function createTodo() {
 }
 
 async function deleteTodo(todo: Todo) {
+  if (!list.value) return;
   try {
     await API.deleteTodo(todo, listId);
-    list.value?.todos.filter((todo: Todo) => todo.id !== todo.id);
+    list.value.todos = list.value.todos.filter((t: Todo) => t.id !== todo.id);
     success.value = `${todo.name} wurde gelöscht.`;
   } catch (e: any) {
     console.error(e);

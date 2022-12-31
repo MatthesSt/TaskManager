@@ -1,6 +1,6 @@
 <template>
   <div class="m-5 d-flex flex-column justify-content-center align-items-center w-100">
-    <Message v-model:success="success" v-model:error="error" />
+    <Message v-model:error="error" />
     <control @click.stop="logout()"><i class="fas fa-sign-out-alt"></i></control>
   </div>
 </template>
@@ -11,7 +11,6 @@ import { Message } from 'custom-mbd-components';
 import * as API from '../API';
 import { ref } from 'vue';
 
-const success = ref('');
 const error = ref('');
 
 async function logout() {
