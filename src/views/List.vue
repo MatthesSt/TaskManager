@@ -42,8 +42,7 @@ import type { List, Todo } from '../types';
 import * as API from '../API';
 import { Message, TextInput, Button } from 'custom-mbd-components';
 import control from '../components/controlButton.vue';
-import router from '../router';
-import { currentUser } from '../router';
+import router, { currentUser } from '../router';
 
 const list = ref<List | null>(null);
 const error = ref('');
