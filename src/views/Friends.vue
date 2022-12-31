@@ -26,11 +26,12 @@ import { computed, ref } from 'vue';
 import * as API from '../API';
 import { SelectInput } from 'custom-mbd-components';
 import { User } from '../types';
+import { currentUser } from '../router';
 
 const error = ref('');
 const users = ref<User[]>([]);
 const friends = ref<User[]>([]);
-const otherUsers = computed(() => users.value.filter(user => !friends.value.find(f => f.id === user.id)));
+const otherUsers = computed(() => users.value.filter(user => !friends.value.find(f => f.id === user.id) && user.id !== currentUser.value?.uid));
 const searchquery = ref('');
 
 //getUsers

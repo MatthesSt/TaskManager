@@ -109,6 +109,8 @@ router.beforeEach(async (to, from, next) => {
 
   if (!(await getCurrentUser()) && requiresAuth) {
     next('/login');
+  } else if ((await getCurrentUser()) && to.name === 'Login') {
+    next('/');
   } else {
     next();
   }
