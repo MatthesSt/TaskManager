@@ -31,7 +31,9 @@ import { currentUser } from '../router';
 const error = ref('');
 const users = ref<User[]>([]);
 const friends = ref<User[]>([]);
-const otherUsers = computed(() => users.value.filter(user => !friends.value.find(f => f.id === user.id) && user.id !== currentUser.value?.uid));
+const otherUsers = computed(() =>
+  users.value.filter(user => !friends.value.find(f => f.id === user.id)).filter(user => user.id !== currentUser.value?.uid)
+);
 const searchquery = ref('');
 
 //getUsers
