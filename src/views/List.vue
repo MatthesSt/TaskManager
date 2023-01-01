@@ -1,8 +1,8 @@
 <template>
   <div v-if="list" class="text-light d-flex flex-column align-items-center justify-content-between w-100 py-5">
     <div class="row w-100 px-4 g-0">
-      <h1 class="text-center col-4 offset-4">{{ list?.name }}</h1>
-      <div v-if="list.authorId == currentUser?.uid" class="col-4 d-flex justify-content-end">
+      <h1 class="col-8 offset-2 text-center">{{ list?.name }}</h1>
+      <div v-if="list.authorId == currentUser?.uid" class="col-2 d-flex justify-content-end align-items-center">
         <control size="40px" style="font-size: 20px; background-color: grey" @click.stop="router.push(`/settings/${listId}`)">
           <i class="fas fa-cog"></i>
         </control>
