@@ -140,3 +140,11 @@ export async function changeAuthState(list: List, userId: Id): Promise<void> {
     authorized,
   });
 }
+
+//deleteList
+export async function deleteList(list: List): Promise<void> {
+  const auth = getAuth();
+  if (!auth.currentUser) throw new Error('Not logged in');
+  if (list.authorId !== auth.currentUser.uid) throw new Error('Not authorized');
+  await deleteDoc(doc(getFirestore(), 'Lists', list.id));
+}

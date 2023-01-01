@@ -1,6 +1,18 @@
 <template>
   <div class="d-flex flex-column align-items-center w-100 overflow-auto py-5">
-    <h2 class="text-light me-2 mb-0 d-flex align-items-center">{{ list?.name }}</h2>
+    <div class="row">
+      <h2 class="text-light mb-0 col-8 offset-2">{{ list?.name }}</h2>
+      <div class="col-2 d-flex align-items-center justify-content-center">
+        <Modal :modal-width="300" affirm-text="Liste löschen" negative-class="btn btn-danger" negative-text="abbrechen" :affirm-action="deleteList">
+          <div>Sicher das die Liste gelöscht werden soll</div>
+          <template #button>
+            <control size="40px" style="font-size: 20px">
+              <i class="fas fa-trash"></i>
+            </control>
+          </template>
+        </Modal>
+      </div>
+    </div>
     <Message v-model:error="error" />
     <div v-if="friends.length > 0" class="w-100 mt-5">
       <div v-for="friend in friends" class="settingsgrid mb-2 w-100 px-4 text-light">
@@ -35,8 +47,9 @@
 import { ref } from 'vue';
 import type { List, User } from '../types';
 import * as API from '../API';
-import { Message } from 'custom-mbd-components';
+import { Message, Modal } from 'custom-mbd-components';
 import control from '../components/controlButton.vue';
+import router from '../router';
 
 const list = ref<List | null>(null);
 const listId = window.location.href.split('/').at(-1)!;
@@ -51,6 +64,17 @@ async function getList() {
   }
 }
 getList();
+
+//delete list
+async function deleteList() {
+  if (!list.value) return;
+  try {
+    await API.deleteList(list.value);
+    router.push('/lists');
+  } catch (e: any) {
+    error.value = e.message;
+  }
+}
 
 async function getFriends() {
   try {
