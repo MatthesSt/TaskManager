@@ -1,7 +1,12 @@
 <template>
   <div class="m-5 d-flex flex-column justify-content-center align-items-center w-100">
     <Message v-model:error="error" />
-    <control @click.stop="logout()"><i class="fas fa-sign-out-alt"></i></control>
+    <control @click.stop="logout()">
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <i class="fas fa-sign-out-alt"></i>
+        <div class="mt-2" style="font-size: 15px">Logout</div>
+      </div>
+    </control>
   </div>
 </template>
 <script lang="ts" setup>

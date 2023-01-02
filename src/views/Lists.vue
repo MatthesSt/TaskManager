@@ -1,19 +1,18 @@
 <template>
-  <div class="d-flex flex-column justify-content-around align-items-center w-100">
-    <div class="d-flex flex-column overflow-auto align-items-center justify-content-center w-100">
-      <div class="mt-2 w-50" v-for="list in currentLists" :key="list.id">
-        <Button @click="router.push(`/List/${list.id}`)" style="background-color: green; border: none; width: 100%">{{ list.name }}</Button>
-      </div>
+  <div class="w-100 contentHeight-75 overflow-auto d-flex flex-column align-items-center pt-5">
+    <h1 class="text-center text-light">Lists</h1>
+    <div class="mt-2 w-50" v-for="list in currentLists" :key="list.id">
+      <Button @click="router.push(`/List/${list.id}`)" style="background-color: green; border: none; width: 100%">{{ list.name }}</Button>
     </div>
-    <div class="d-flex justify-content-center align-items-center flex-column">
-      <control class="mb-2" v-if="!doCreate" @click.stop="doCreate = true"><i class="fas fa-plus"></i></control>
-      <Message v-model:success="success" v-model:error="error" />
-      <form v-if="doCreate" @submit.prevent="createList()">
-        <TextInput placeholder="Name" v-model="newListName" required></TextInput>
-        <Button class="me-2 mt-2">Erstellen</Button>
-        <Button type="button" class="mt-2" @click.stop="doCreate = false">abbrechen</Button>
-      </form>
-    </div>
+  </div>
+  <div class="addButton d-flex justify-content-center align-items-center flex-column">
+    <control class="mb-2" v-if="!doCreate" @click.stop="doCreate = true"><i class="fas fa-plus"></i></control>
+    <form v-if="doCreate" @submit.prevent="createList()">
+      <TextInput placeholder="Name" v-model="newListName" required></TextInput>
+      <Button class="me-2 mt-2">Erstellen</Button>
+      <Button type="button" class="mt-2" @click.stop="doCreate = false">abbrechen</Button>
+    </form>
+    <Message v-model:success="success" v-model:error="error" />
   </div>
 </template>
 <script setup lang="ts">

@@ -1,0 +1,11 @@
+.addButton {
+  width: 100%;
+  height: calc(30vh - 50px);
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.contentHeight-75 {
+  height: 70vh;
+}

@@ -1,8 +1,9 @@
 <template>
   <div class="d-flex flex-column align-items-center w-100 overflow-auto py-5">
-    <div class="row">
-      <h2 class="text-light mb-0 col-8 offset-2">{{ list?.name }}</h2>
-      <div class="col-2 d-flex align-items-center justify-content-center">
+    <div class="w-100 px-4" style="display: grid; grid-template-columns: 40px auto 40px; gap: 10px">
+      <div></div>
+      <h2 class="text-light text-center mb-0">{{ list?.name }}</h2>
+      <div class="d-flex align-items-center justify-content-center">
         <Modal :modal-width="300" affirm-text="Liste löschen" negative-class="btn btn-danger" negative-text="abbrechen" :affirm-action="deleteList">
           <div>Sicher das die Liste gelöscht werden soll</div>
           <template #button>

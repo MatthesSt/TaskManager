@@ -1,14 +1,15 @@
 <template>
-  <div v-if="list" class="text-light d-flex flex-column align-items-center justify-content-between w-100 py-5">
-    <div class="row w-100 px-4 g-0">
-      <h1 class="col-8 offset-2 text-center">{{ list?.name }}</h1>
-      <div v-if="list.authorId == currentUser?.uid" class="col-2 d-flex justify-content-end align-items-center">
+  <div v-if="list" class="text-light d-flex flex-column align-items-center w-100 py-5 contentHeight-75">
+    <div class="w-100 px-4" style="display: grid; grid-template-columns: 40px auto 40px; gap: 10px">
+      <div></div>
+      <h1 class="text-center">{{ list?.name }}</h1>
+      <div v-if="list.authorId == currentUser?.uid" class="d-flex justify-content-end align-items-center">
         <control size="40px" style="font-size: 20px; background-color: grey" @click.stop="router.push(`/settings/${listId}`)">
           <i class="fas fa-cog"></i>
         </control>
       </div>
     </div>
-    <div class="d-flex flex-column align-items-center w-100 overflow-auto">
+    <div class="d-flex flex-column align-items-center w-100 overflow-auto mt-5">
       <div v-for="todo in list?.todos" class="listgrid mb-2 w-100 px-4">
         <h3 class="text-light me-2 mb-0 d-flex align-items-center">{{ todo.name }}</h3>
         <control size="40px" style="font-size: 20px" @click.stop="deleteTodo(todo)"><i class="fas fa-trash"></i></control>
@@ -18,15 +19,15 @@
         </control>
       </div>
     </div>
-    <div class="d-flex flex-column align-items-center justify-content-between">
-      <control class="mb-2" v-if="!doCreate" @click.stop="doCreate = true"><i class="fas fa-plus"></i></control>
-      <Message v-model:success="success" v-model:error="error" />
-      <form v-if="doCreate" @submit.prevent="createTodo()">
-        <TextInput placeholder="Name" v-model="newTodoName" required></TextInput>
-        <Button class="me-2 mt-2">Erstellen</Button>
-        <Button type="button" class="mt-2" @click.stop="doCreate = false">abbrechen</Button>
-      </form>
-    </div>
+  </div>
+  <div class="addButton d-flex flex-column align-items-center justify-content-center">
+    <control class="mb-2" v-if="!doCreate" @click.stop="doCreate = true"><i class="fas fa-plus"></i></control>
+    <form v-if="doCreate" @submit.prevent="createTodo()">
+      <TextInput placeholder="Name" v-model="newTodoName" required></TextInput>
+      <Button class="me-2 mt-2">Erstellen</Button>
+      <Button type="button" class="mt-2" @click.stop="doCreate = false">abbrechen</Button>
+    </form>
+    <Message v-model:success="success" v-model:error="error" />
   </div>
 </template>
 <style lang="scss">

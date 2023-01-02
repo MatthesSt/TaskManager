@@ -1,5 +1,8 @@
 <template>
-  <div class="d-flex flex-column w-100 text-light py-5 align-items-center justify-content-between">
+  <div class="w-100" v-if="loading">
+    <h1 class="text-center mt-5 text-light">Friendlist</h1>
+  </div>
+  <div v-else class="d-flex flex-column w-100 text-light py-5 align-items-center">
     <div class="d-flex flex-column align-items-center w-100">
       <h1>Friendlist</h1>
       <div class="text-dark" v-if="otherUsers.length > 0">
@@ -13,7 +16,7 @@
         />
       </div>
     </div>
-    <div class="pb-5 overflow-auto w-100">
+    <div class="pb-5 overflow-auto w-100 contentHeight-75 fixed-bottom">
       <div v-for="user of friends" style="border-radius: 0.5rem; background-color: green; margin: 0 auto" class="p-2 w-50 mb-2 text-center">
         {{ user.name }}
       </div>
@@ -28,6 +31,7 @@ import { SelectInput } from 'custom-mbd-components';
 import { User } from '../types';
 import { currentUser } from '../router';
 
+const loading = ref(true);
 const error = ref('');
 const users = ref<User[]>([]);
 const friends = ref<User[]>([]);
@@ -45,7 +49,7 @@ async function getUsers() {
     error.value = e.message;
   }
 }
-getUsers();
+
 //getfriends
 async function getFriends() {
   try {
@@ -54,7 +58,12 @@ async function getFriends() {
     error.value = e.message;
   }
 }
-getFriends();
+// init
+(async () => {
+  await getUsers();
+  await getFriends();
+  loading.value = false;
+})();
 //add friend
 async function addFriend(user: User) {
   try {
