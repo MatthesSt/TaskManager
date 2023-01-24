@@ -1,1 +1,1 @@
-{"name":"TaskManager1.0","short_name":"TaskManager1.0","start_url":"/TaskManager/","display":"standalone","background_color":"#000000","lang":"en","scope":"./","theme_color":"#7E1F86","icons":[{"src":"public/list-solid.svg","sizes":"144x144","type":"image/svg","purpose":"any"}]}
+{"name":"TaskManager1.0","short_name":"TaskManager1.0","start_url":"/TaskManager/","display":"standalone","background_color":"#000000","lang":"en","scope":"./","theme_color":"#7E1F86","icons":[{"src":"list.png","sizes":"256x256","type":"image/png","purpose":"any"}]}

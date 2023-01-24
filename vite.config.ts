@@ -24,9 +24,9 @@ export default defineConfig({
         display: 'standalone',
         icons: [
           {
-            src: 'public/list-solid.svg',
-            sizes: '144x144',
-            type: 'image/svg',
+            src: 'list.png',
+            sizes: '256x256',
+            type: 'image/png',
             purpose: 'any',
           },
         ],
